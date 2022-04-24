@@ -23,23 +23,21 @@ def factors(n):
 
 def no_int_roots(a,b):
     '''returns number of integer roots to f(x) = x^3+ax+b'''
-    factors1 = factors(abs(b))
     if b==0:
-        factors2 = factors(abs(a))
-        count2=1
-        no_repeats = []
-        [no_repeats.append(x) for x in factors2 if x not in no_repeats]
-        for x in no_repeats:
+        factors1 = factors(abs(a))
+        count=1
+        factors1 = list(set(factors1))
+        for x in factors1:
             if x**2 + a == 0:
-                count2+=1
-        return count2
-    count1=0
-    no_repeats = []
-    [no_repeats.append(x) for x in factors1 if x not in no_repeats]
-    for x in no_repeats:
+                count+=1
+        return count
+    factors1 = factors(abs(b))
+    factors1 = list(set(factors1))
+    count=0
+    for x in factors1:
         if x**3 + a*x + b == 0:
-            count1+=1
-    return count1 
+            count+=1
+    return count 
     
 def good_red(a,b,p):
     '''determines if p is a prime of good reduction for the EC'''
@@ -781,6 +779,7 @@ ec0.plot_graph_no_elts(1,3)
 ec0.plot_graph_props(1,5)
 ec0.plot_graph_ratios(-3,1)
 ec0.gen_graphtype_graph_fast(10)
+
 
 
 
